@@ -42,9 +42,26 @@ export abstract class DraggableDialog<T> extends AbstractDialog<T> {
             const dx = e.clientX - startX;
             const dy = e.clientY - startY;
             dialogBlock.style.position = 'fixed';
-            dialogBlock.style.left = origLeft + dx + 'px';
-            dialogBlock.style.top = origTop + dy + 'px';
             dialogBlock.style.margin = '0';
+
+            // 使用当前窗口宽高限制拖拽边界
+            const dialogRect = dialogBlock.getBoundingClientRect();
+            let newLeft = origLeft + dx;
+            let newTop = origTop + dy;
+            const maxLeft = window.innerWidth - dialogRect.width;
+            const maxTop = window.innerHeight - dialogRect.height;
+
+            // 限制左边界
+            if (newLeft < 0) newLeft = 0;
+            // 限制右边界
+            if (newLeft > maxLeft) newLeft = maxLeft;
+            // 限制上边界
+            if (newTop < 0) newTop = 0;
+            // 限制下边界
+            if (newTop > maxTop) newTop = maxTop;
+
+            dialogBlock.style.left = newLeft + 'px';
+            dialogBlock.style.top = newTop + 'px';
         });
 
         window.addEventListener('mouseup', () => {
