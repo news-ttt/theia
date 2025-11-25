@@ -29,6 +29,7 @@ import '../../src/browser/style/dialogs.css'
 import { DefaultLocaleFrontendContribution } from './default-locale-contribution';
 import { FrontendApplicationContribution } from '@theia/core/lib/browser/frontend-application-contribution';
 import { bindWebviewViewStabilityPatch } from './webview/webview-view-stability-patch';
+import { bindTreeViewPreparePatch } from './view/tree-view-prepare-patch';
 
 export default new ContainerModule((
     bind: interfaces.Bind,
@@ -55,6 +56,7 @@ export default new ContainerModule((
     bind(FrontendApplicationContribution).toService(DefaultLocaleFrontendContribution);
     // WebviewView stability (Scheme A) runtime patch.
     bindWebviewViewStabilityPatch(bind);
+    bindTreeViewPreparePatch(bind);
     // bindMonacoPreferenceExtractor(bind);
     // bindSampleAppInfo(bind);
     // bindSampleFileSystemCapabilitiesCommands(bind);
