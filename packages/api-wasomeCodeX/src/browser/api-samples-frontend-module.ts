@@ -15,21 +15,18 @@
 // *****************************************************************************
 
 import { ContainerModule, interfaces } from '@theia/core/shared/inversify';
-import { bindDynamicLabelProvider } from './label/sample-dynamic-label-provider-command-contribution';
-import { bindSampleUnclosableView } from './view/sample-unclosable-view-contribution';
 import { bindSampleMenu } from './menu/sample-menu-contribution';
-import { bindSampleFileWatching } from './file-watching/sample-file-watching-contribution';
-import { bindVSXCommand } from './vsx/sample-vsx-command-contribution';
 import { bindSampleToolbarContribution } from './toolbar/sample-toolbar-contribution';
 import { FileSystemWatcherErrorHandler } from '@theia/filesystem/lib/browser/filesystem-watcher-error-handler';
 import { LogOnlyFileSystemWatcherErrorHandler } from './file-watching/log-only-file-watcher-error-handler';
 
 import '../../src/browser/style/branding.css';
 import '../../src/browser/style/dialogs.css'
-import { DefaultLocaleFrontendContribution } from './default-locale-contribution';
+import { DefaultLocaleFrontendContribution } from './view/default-locale-contribution';
 import { FrontendApplicationContribution } from '@theia/core/lib/browser/frontend-application-contribution';
 import { bindWebviewViewStabilityPatch } from './webview/webview-view-stability-patch';
 import { bindTreeViewPreparePatch } from './view/tree-view-prepare-patch';
+import { bindTreeWidgetViewPatch } from './view/tree-widget-view-patch';
 
 export default new ContainerModule((
     bind: interfaces.Bind,
@@ -38,17 +35,7 @@ export default new ContainerModule((
     rebind: interfaces.Rebind,
 ) => {
     // TODO 新增IDE命令贡献，移除旧命令贡献
-    // bindAskAndContinueChatAgentContribution(bind);
-    // bindChangeSetChatAgentContribution(bind);
-    // bindOriginalStateTestAgentContribution(bind);
-    // bindChatNodeToolbarActionContribution(bind);
-    // bindDynamicLabelProvider(bind);
-    // bindSampleUnclosableView(bind);
-    // bindSampleOutputChannelWithSeverity(bind);
     bindSampleMenu(bind);
-    // bindSampleFileWatching(bind);
-    // bindVSXCommand(bind);
-    // bindSampleFilteredCommandContribution(bind);
     bindSampleToolbarContribution(bind, rebind);
     // Custom: bind default locale (zh-hans) initializer
     bind(DefaultLocaleFrontendContribution).toSelf().inSingletonScope();
@@ -57,9 +44,5 @@ export default new ContainerModule((
     // WebviewView stability (Scheme A) runtime patch.
     bindWebviewViewStabilityPatch(bind);
     bindTreeViewPreparePatch(bind);
-    // bindMonacoPreferenceExtractor(bind);
-    // bindSampleAppInfo(bind);
-    // bindSampleFileSystemCapabilitiesCommands(bind);
-    // rebindOVSXClientFactory(rebind);
-    // bindSampleCodeCompletionVariableContribution(bind);
+    bindTreeWidgetViewPatch(bind);
 });
