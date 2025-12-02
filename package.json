@@ -68,6 +68,7 @@
     "clean": "npm run -s rebuild:clean && npm run -s lint:clean && lerna run clean",
     "compile": "lerna run compile",
     "package": "lerna run --scope=\"@theia/example-electron\" package --concurrency 1",
+    "package:wasome": "lerna run --scope=\"@theia/example-electron\" package:wasome --concurrency 1",
     "package:win": "lerna run --scope=\"@theia/example-electron\" package:win --concurrency 1",
     "package:applications:preview": "lerna run --scope=\"@theia/example-electron\" package:preview --concurrency 1",
     "compute-references": "node scripts/compile-references.js",

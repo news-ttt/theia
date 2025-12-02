@@ -1,5 +1,5 @@
-appId: com.plcide
-productName: PlcIDE
+appId: WasomeCodeX
+productName: WasomeCodeX
 copyright: Copyright © 2020-2025 Eclipse Foundation, Inc
 # Although it is generally not recommended to disable asar, it is required for Theia.
 # Enabling this leads to: process ERROR Error: spawn ENOTDIR
@@ -77,7 +77,7 @@ nsis:
   runAfterFinish: false
   artifactName: ${productName} Setup.${ext}
   license: LICENSE
-  include: ./scripts/installer.nsh
+  include: ./scripts/installer-wasome.nsh
 dmg:
   artifactName: ${productName}.${ext}
 deb:
@@ -86,3 +86,34 @@ appImage:
   artifactName: ${productName}.${ext}
 
 afterPack: ./scripts/after-pack.js
+# afterInstall: ./scripts/after-install.js // 执行安装时自定义脚本
+# afterRemove: ./scripts/after-remove.js // 执行卸载时自定义脚本
+#  "build": {
+#     "appId": "com.wasomecodex.ide",
+#     "productName": "webIDE",
+#     "directories": {
+#       "output": "dist"
+#     },
+#     "extraMetadata": {
+#       "homepage": "https://wasomecodex.com"
+#     },
+#     "asar": false,
+#     "files": [
+#       "lib/**/*",
+#       "plugins/**/*",
+#       "src-gen/**/*",
+#       "package.json",
+#       "!**/*.map"
+#     ],
+#     "linux": {
+#       "target": [
+#         "AppImage",
+#         "deb"
+#       ],
+#       "maintainer": "News <news@wansheng-intelli.com>",
+#       "category": "Development"
+#     },
+#     "win": {
+#       "target": "nsis"
+#     }
+#   },

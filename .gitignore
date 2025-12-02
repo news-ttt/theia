@@ -38,4 +38,5 @@ dependency-check-summary.txt*
 allure-results
 typedoc.tsconfig.json
 examples/electron/dist
-
+resources_custom
+scripts_custom

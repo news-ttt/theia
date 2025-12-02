@@ -1,24 +1,24 @@
 {
   "private": true,
   "name": "@theia/example-electron",
-  "productName": "WasomeCodeX",
+  "productName": "PlcIDE",
   "version": "1.64.0",
   "main": "scripts/theia-electron-main.js",
   "license": "EPL-2.0 OR GPL-2.0-only WITH Classpath-exception-2.0",
   "author": {
-    "name": "WebIDE",
+    "name": "PlcIDE",
     "email": "news@wansheng-intelli.com"
   },
-  "homepage": "https://www.wansheng-intelli.com",
+  "homepage": "git@gitee.com:news-ttt/plc-profile-help.git",
   "theia": {
     "target": "electron",
     "frontend": {
       "config": {
-        "applicationName": "WasomeCodeX",
+        "applicationName": "PlcIDE",
         "reloadOnReconnect": true,
         "electron": {
           "splashScreenOptions": {
-            "content": "resources/ide-logo.svg",
+            "content": "resources_custom/ide-logo.svg",
             "height": 450
           }
         }
@@ -119,7 +119,8 @@
     "watch:compile": "tsc -b -w",
     "package": "yarn clean:dist && yarn rebuild && electron-builder -c.mac.identity=null --publish never",
     "package:win": "yarn clean:dist && yarn rebuild  && electron-builder --win",
-    "package:preview": "yarn clean:dist && yarn rebuild && electron-builder -c.mac.identity=null --dir"
+    "package:preview": "yarn clean:dist && yarn rebuild && electron-builder -c.mac.identity=null --dir",
+    "package:wasome": "yarn clean:dist && yarn rebuild && electron-builder -c electron-builder-wasome.yml --publish never"
   },
   "devDependencies": {
     "@theia/cli": "1.64.0",

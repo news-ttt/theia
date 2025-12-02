@@ -197,7 +197,7 @@ export class GettingStartedWidget extends ReactWidget {
      */
     protected renderHeader(): React.ReactNode {
         return <div className='gs-header'>
-            <h1>{this.applicationName}<span className='gs-sub-header'>{' ' + GettingStartedWidget.LABEL}</span></h1>
+            <h1><span className='gs-sub-header'>{GettingStartedWidget.LABEL}</span></h1>
         </div>;
     }
 
@@ -388,7 +388,8 @@ export class GettingStartedWidget extends ReactWidget {
                     {nls.localizeByDefault('打开帮助')}
                 </a>
             </div>
-            <div className='gs-action-container'>
+            {/* 考虑到客户定制化没有浏览器帮助 */}
+            {/* <div className='gs-action-container'>
                 <a
                     role={'button'}
                     tabIndex={0}
@@ -396,7 +397,7 @@ export class GettingStartedWidget extends ReactWidget {
                     onKeyDown={(e: React.KeyboardEvent) => this.doOpenExternalLinkEnter(e, this.documentationUrl)}>
                     {nls.localizeByDefault('在浏览器中打开帮助')}
                 </a>
-            </div>
+            </div> */}
             {/* <div className='gs-action-container'>
                 <a
                     role={'button'}
@@ -456,7 +457,7 @@ export class GettingStartedWidget extends ReactWidget {
 
     protected renderNews(): React.ReactNode {
         return <div className='gs-section'>
-            <h3 className='gs-section-header'>🚀 PlcIDE IDE中的AI支持可用! ✨</h3>
+            <h3 className='gs-section-header'>🚀 IDE中的AI支持可用! ✨</h3>
             <div className='gs-action-container'>
                 <a
                     role={'button'}

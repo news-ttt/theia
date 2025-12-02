@@ -1,14 +1,14 @@
-; Custom NSIS include for PlcIDE to improve logging of uninstall/upgrade issues.
+; Custom NSIS include for WasomeCodeX to improve logging of uninstall/upgrade issues.
 ; This file is appended to the auto-generated script by electron-builder via `nsis.include`.
 ; Safe to remove if problems occur.
 ; NOTE: Keep logic minimal to avoid breaking the default flow.
 
 !ifndef WCX_INSTALLER_NSH
 !define WCX_INSTALLER_NSH
-!define WCX_PRODUCT_NAME "PlcIDE"
-!define WCX_DISPLAY_PREFIX_PATTERN "PlcIDE%" ; 模糊前缀匹配模式：以产品名开头即可（后面任何版本号/后缀）
+!define WCX_PRODUCT_NAME "WasomeCodeX"
+!define WCX_DISPLAY_PREFIX_PATTERN "WasomeCodeX%" ; 模糊前缀匹配模式：以产品名开头即可（后面任何版本号/后缀）
 
-!define LOG_BASENAME "PlcIDE\\installer-uninstall.log"
+!define LOG_BASENAME "WasomeCodeX\\installer-uninstall.log"
 Var LogFilePath  ; Variable to store full log path
 
 Var wcxOldUninstallDir  ; Global variable to store old uninstall directory
@@ -68,11 +68,11 @@ FunctionEnd
 
 ; Macro to be called from main script's .onInit
 !macro customInit
-  CreateDirectory "$LOCALAPPDATA\PlcIDE"
+  CreateDirectory "$LOCALAPPDATA\WasomeCodeX"
   StrCpy $LogFilePath "$LOCALAPPDATA\${LOG_BASENAME}"
   Push "========================================="
   Call wcx_WriteLog
-  Push "[INSTALLER START] PlcIDE Installer"
+  Push "[INSTALLER START] WasomeCodeX Installer"
   Call wcx_WriteLog
   Push "========================================="
   Call wcx_WriteLog
@@ -126,7 +126,7 @@ Function wcx_LogEnvironment
   Push "[REGISTRY CHECK] Searching for existing installations..."
   Call wcx_WriteLog
 
-  ; Calculate product name length for prefix matching (supports DisplayName like "PlcIDE 1.64.0")
+  ; Calculate product name length for prefix matching (supports DisplayName like "WasomeCodeX 1.64.0")
   StrLen $R8 "${WCX_PRODUCT_NAME}"
   
   ; --- Enumerate uninstall keys (HKCU) across 64-bit & 32-bit views ---
@@ -158,13 +158,13 @@ Function wcx_LogEnvironment
         Call wcx_WriteLog
         Goto wcxEnumHKCU64_Next
     wcxEnumHKCU64_CheckHeuristic:
-      ; Fallback heuristic: check if UninstallString contains "Uninstall PlcIDE.exe"
+      ; Fallback heuristic: check if UninstallString contains "Uninstall WasomeCodeX.exe"
       ReadRegStr $R3 HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\$R1" "UninstallString"
       StrCmp $R3 "" wcxEnumHKCU64_Next
       StrCmp $wcxUninstallKeyHKCU "" 0 wcxEnumHKCU64_Next
       ; Simple contains check: look for the uninstaller exe name in the path
       Push $R3
-      Push "Uninstall PlcIDE.exe"
+      Push "Uninstall WasomeCodeX.exe"
       Call wcx_StrContains
       Pop $R4
       StrCmp $R4 "" wcxEnumHKCU64_Next
@@ -207,7 +207,7 @@ Function wcx_LogEnvironment
       StrCmp $R3 "" wcxEnumHKCU32_Next
       StrCmp $wcxUninstallKeyHKCU "" 0 wcxEnumHKCU32_Next
       Push $R3
-      Push "Uninstall PlcIDE.exe"
+      Push "Uninstall WasomeCodeX.exe"
       Call wcx_StrContains
       Pop $R4
       StrCmp $R4 "" wcxEnumHKCU32_Next
@@ -272,7 +272,7 @@ Function wcx_LogEnvironment
       StrCmp $R3 "" wcxEnumHKLM64_Next
       StrCmp $wcxUninstallKeyHKLM "" 0 wcxEnumHKLM64_Next
       Push $R3
-      Push "Uninstall PlcIDE.exe"
+      Push "Uninstall WasomeCodeX.exe"
       Call wcx_StrContains
       Pop $R4
       StrCmp $R4 "" wcxEnumHKLM64_Next
@@ -314,7 +314,7 @@ Function wcx_LogEnvironment
       StrCmp $R3 "" wcxEnumHKLM32_Next
       StrCmp $wcxUninstallKeyHKLM "" 0 wcxEnumHKLM32_Next
       Push $R3
-      Push "Uninstall PlcIDE.exe"
+      Push "Uninstall WasomeCodeX.exe"
       Call wcx_StrContains
       Pop $R4
       StrCmp $R4 "" wcxEnumHKLM32_Next
@@ -432,7 +432,7 @@ Function wcx_LogEnvironment
     wcxLogEnv_wcxLogDir:
       Push "[OLD VERSION] Directory: $6"
       Call wcx_WriteLog
-      IfFileExists "$6\Uninstall PlcIDE.exe" wcxLogEnv_wcxOldExeFound wcxLogEnv_wcxNoOldExe
+      IfFileExists "$6\Uninstall WasomeCodeX.exe" wcxLogEnv_wcxOldExeFound wcxLogEnv_wcxNoOldExe
       wcxLogEnv_wcxOldExeFound:
         Push "[OLD VERSION] Uninstaller executable verified"
         Call wcx_WriteLog
@@ -470,32 +470,32 @@ Function wcx_LogEnvironment
   Push "[PROCESS CHECK] Scanning for running instances..."
   Call wcx_WriteLog
   
-  nsExec::ExecToStack 'tasklist /FI "IMAGENAME eq PlcIDE.exe" /NH /FO CSV'
+  nsExec::ExecToStack 'tasklist /FI "IMAGENAME eq WasomeCodeX.exe" /NH /FO CSV'
   Pop $2
   Pop $3
   ; CSV output has quoted lines when a process matches, so check first char for '"'
   StrCpy $R0 $3 1
   StrCmp $R0 '"' wcxLogEnv_hasMainProcess wcxLogEnv_noMainProcess
   wcxLogEnv_hasMainProcess:
-    Push "[PROCESS] PlcIDE.exe: RUNNING"
+    Push "[PROCESS] WasomeCodeX.exe: RUNNING"
     Call wcx_WriteLog
     Goto wcxLogEnv_checkHelper
   wcxLogEnv_noMainProcess:
-    Push "[PROCESS] PlcIDE.exe: Not running"
+    Push "[PROCESS] WasomeCodeX.exe: Not running"
     Call wcx_WriteLog
     
   wcxLogEnv_checkHelper:
-  nsExec::ExecToStack 'tasklist /FI "IMAGENAME eq PlcIDE Helper.exe" /NH /FO CSV' ; electron 通常会有多个 helper 辅助进程
+  nsExec::ExecToStack 'tasklist /FI "IMAGENAME eq WasomeCodeX Helper.exe" /NH /FO CSV' ; electron 通常会有多个 helper 辅助进程
   Pop $2
   Pop $3
   StrCpy $R0 $3 1
   StrCmp $R0 '"' wcxLogEnv_hasHelperProcess wcxLogEnv_noHelperProcess
   wcxLogEnv_hasHelperProcess:
-    Push "[PROCESS] PlcIDE Helper.exe: RUNNING"
+    Push "[PROCESS] WasomeCodeX Helper.exe: RUNNING"
     Call wcx_WriteLog
     Goto wcxLogEnv_end
   wcxLogEnv_noHelperProcess:
-    Push "[PROCESS] PlcIDE Helper.exe: Not running"
+    Push "[PROCESS] WasomeCodeX Helper.exe: Not running"
     Call wcx_WriteLog
   
   wcxLogEnv_end:
@@ -526,7 +526,7 @@ FunctionEnd
 
 Section -wcxPreInstall
   ; Ensure log directory exists
-  CreateDirectory "$LOCALAPPDATA\PlcIDE"
+  CreateDirectory "$LOCALAPPDATA\WasomeCodeX"
   
   Push ""
   Call wcx_WriteLog
@@ -549,14 +549,14 @@ Section -wcxPreInstall
   StrCmp $6 "" wcxPreInst_noOldVersion wcxPreInst_checkOldVersion
   
   wcxPreInst_checkOldVersion:
-  IfFileExists "$6\Uninstall PlcIDE.exe" wcxPreInst_wcxProbeExist wcxPreInst_noOldVersion
+  IfFileExists "$6\Uninstall WasomeCodeX.exe" wcxPreInst_wcxProbeExist wcxPreInst_noOldVersion
   
   wcxPreInst_wcxProbeExist:
     Push "[CLEANUP] Found old version at: $6"
     Call wcx_WriteLog
     Push "[CLEANUP] Attempting silent uninstall of old version..."
     Call wcx_WriteLog
-    nsExec::ExecToStack '"$6\Uninstall PlcIDE.exe" /S'
+    nsExec::ExecToStack '"$6\Uninstall WasomeCodeX.exe" /S'
     Pop $R1
     Pop $R2
     Push "[CLEANUP] Uninstall exit code: $R1"
@@ -589,25 +589,25 @@ Section -wcxPreInstall
     Push "[CLEANUP] Kill attempt $R3 of 3..."
     Call wcx_WriteLog
     
-    nsExec::ExecToStack 'taskkill /IM PlcIDE.exe /T /F'
+    nsExec::ExecToStack 'taskkill /IM WasomeCodeX.exe /T /F'
     Pop $2
     Pop $R7
-    Push "[CLEANUP]   - PlcIDE.exe: exit code=$2"
+    Push "[CLEANUP]   - WasomeCodeX.exe: exit code=$2"
     Call wcx_WriteLog
     
-    nsExec::ExecToStack 'taskkill /IM "PlcIDE Helper.exe" /T /F'
+    nsExec::ExecToStack 'taskkill /IM "WasomeCodeX Helper.exe" /T /F'
     Pop $2
     Pop $R7
-    Push "[CLEANUP]   - PlcIDE Helper.exe: exit code=$2"
+    Push "[CLEANUP]   - WasomeCodeX Helper.exe: exit code=$2"
     Call wcx_WriteLog
     
     Sleep 2000
     
-  nsExec::ExecToStack 'tasklist /FI "IMAGENAME eq PlcIDE.exe" /NH /FO CSV'
+  nsExec::ExecToStack 'tasklist /FI "IMAGENAME eq WasomeCodeX.exe" /NH /FO CSV'
   Pop $R4
   Pop $R5
 
-  ; CSV output is quoted when a match exists (e.g., "PlcIDE.exe",...),
+  ; CSV output is quoted when a match exists (e.g., "WasomeCodeX.exe",...),
   ; check first character for '"' to decide if the process is running.
   StrCpy $R0 $R5 1
   StrCmp $R0 '"' wcxPreInst_wcxStillRunning wcxPreInst_wcxKillDone
@@ -621,12 +621,12 @@ Section -wcxPreInstall
   wcxPreInst_wcxKillFailed:
     Push "[CLEANUP] WARNING: Failed to terminate processes after 3 attempts"
     Call wcx_WriteLog
-    MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "PlcIDE is still running.$\n$\nPlease close all PlcIDE windows and click OK to retry." IDOK wcxPreInst_killProcesses IDCANCEL wcxPreInst_userAbort
+    MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "WasomeCodeX is still running.$\n$\nPlease close all WasomeCodeX windows and click OK to retry." IDOK wcxPreInst_killProcesses IDCANCEL wcxPreInst_userAbort
         
   wcxPreInst_userAbort:
     Push "[CLEANUP] Installation aborted by user"
     Call wcx_WriteLog
-    Abort "Installation cancelled: PlcIDE is still running."
+    Abort "Installation cancelled: WasomeCodeX is still running."
       
   wcxPreInst_wcxKillDone:
     Push "[CLEANUP] All processes terminated successfully"
@@ -660,7 +660,7 @@ Section -wcxPreInstall
     Call wcx_WriteLog
   
   wcxPreInst_finalCheck:
-  nsExec::ExecToStack 'tasklist /FI "IMAGENAME eq PlcIDE.exe" /NH /FO CSV'
+  nsExec::ExecToStack 'tasklist /FI "IMAGENAME eq WasomeCodeX.exe" /NH /FO CSV'
   Pop $2 ; exit code
   Pop $3 ; last line output
 
@@ -669,12 +669,12 @@ Section -wcxPreInstall
   StrCmp $R0 '"' wcxPreInst_hasProcess wcxPreInst_noProcess
 
   wcxPreInst_hasProcess:
-    Push "[VERIFY] WARNING: PlcIDE.exe still running!"
+    Push "[VERIFY] WARNING: WasomeCodeX.exe still running!"
     Call wcx_WriteLog
     Goto wcxPreInst_end
 
   wcxPreInst_noProcess:
-    Push "[VERIFY] No PlcIDE processes running"
+    Push "[VERIFY] No WasomeCodeX processes running"
     Call wcx_WriteLog
 
     
@@ -692,11 +692,11 @@ Section -wcxPostInstall
   Call wcx_WriteLog
   Push "========== POST-INSTALL PHASE =========="
   Call wcx_WriteLog
-  Push "[SUCCESS] PlcIDE installation completed"
+  Push "[SUCCESS] WasomeCodeX installation completed"
   Call wcx_WriteLog
   Push "[INFO] Installation path: $INSTDIR"
   Call wcx_WriteLog
-  Push "[INFO] Executable: $INSTDIR\PlcIDE.exe"
+  Push "[INFO] Executable: $INSTDIR\WasomeCodeX.exe"
   Call wcx_WriteLog
   Push "========================================="
   Call wcx_WriteLog
