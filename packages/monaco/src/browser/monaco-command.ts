@@ -82,9 +82,9 @@ export class MonacoEditorCommandHandlers implements CommandContribution {
     }
 
     /**
-     * Register commands from Monaco to WasomeCodeX registry.
+     * Register commands from Monaco to PlcIDE registry.
      *
-     * Monaco has different kind of commands which should be handled differently by WasomeCodeX.
+     * Monaco has different kind of commands which should be handled differently by PlcIDE.
      *
      * ### Editor Actions
      *
@@ -99,20 +99,20 @@ export class MonacoEditorCommandHandlers implements CommandContribution {
      *
      * `actions.find` and `editor.action.startFindReplaceAction` are registered as handlers for `find` and `replace`.
      * If handlers are not enabled then the core should prevent the default browser behavior.
-     * Other WasomeCodeX extensions can register alternative implementations using custom enablement.
+     * Other PlcIDE extensions can register alternative implementations using custom enablement.
      *
      * ### Global Commands
      *
      * These commands are not necessary dependent on the current editor and enabled always.
      * But they depend on services which are global in VS Code, but bound to the editor in Monaco,
-     * i.e. `ICodeEditorService` or `IContextKeyService`. We should take care of providing WasomeCodeX implementations for such services.
+     * i.e. `ICodeEditorService` or `IContextKeyService`. We should take care of providing PlcIDE implementations for such services.
      *
      * #### Global Native or Editor Commands
      *
      * Namely: `undo`, `redo` and `editor.action.selectAll`. They depend on `ICodeEditorService`.
      * They will try to delegate to the current editor and if it is not available delegate to the browser.
      * They are registered as handlers for corresponding core commands always.
-     * Other WasomeCodeX extensions can provide alternative implementations by introducing a dependency to `@theia/monaco` extension.
+     * Other PlcIDE extensions can provide alternative implementations by introducing a dependency to `@theia/monaco` extension.
      *
      * #### Global Language Commands
      *
@@ -181,7 +181,7 @@ export class MonacoEditorCommandHandlers implements CommandContribution {
             }
         }
 
-        // the _setContext command stringifies all URIs in contextValue and needs to be overriden to handle all URI types in WasomeCodeX
+        // the _setContext command stringifies all URIs in contextValue and needs to be overriden to handle all URI types in PlcIDE
         const setContext = monacoCommands.get('_setContext');
         if (setContext) {
             this.commandRegistry.registerCommand({ id: setContext.id }, {

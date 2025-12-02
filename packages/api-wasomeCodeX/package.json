@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "wasomecodex",
+  "name": "PlcIDE",
   "version": "0.0.1",
-  "description": "WasomeCodeX API",
+  "description": "PlcIDE API",
   "dependencies": {
     "@theia/ai-chat": "1.64.0",
     "@theia/ai-chat-ui": "1.64.0",

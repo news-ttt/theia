@@ -20,7 +20,7 @@ const fs = require('fs');
 const electron = require('electron');
 
 /*
- * Generate keyboard layouts for using WasomeCodeX as web application.
+ * Generate keyboard layouts for using PlcIDE as web application.
  *
  * Usage:
  *     npm run generate-layout [--info] [--all] [--pretty] [--output file]

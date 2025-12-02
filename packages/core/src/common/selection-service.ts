@@ -26,7 +26,7 @@ export interface SelectionProvider<T> {
 }
 
 /**
- * Singleton service that is used to share the current selection globally in a WasomeCodeX application.
+ * Singleton service that is used to share the current selection globally in a PlcIDE application.
  * On each change of selection, subscribers are notified and receive the updated selection object.
  */
 @injectable()

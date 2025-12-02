@@ -1043,6 +1043,20 @@ export class SampleMenuContribution implements MenuContribution {
                 commandId: "toolbar.view.toggle",
                 label: '显示/隐藏工具栏'
             });
+            menus.registerMenuAction(WasomeMenus.VIEW_TOOLBAR, {
+                commandId: "fileNavigator:toggle",
+                label: '资源管理器视图'
+            });
+            menus.registerMenuAction(WasomeMenus.VIEW_TOOLBAR, {
+                commandId: "vsxExtensions.toggle",
+                label: '扩展视图'
+            });
+            menus.registerMenuAction(WasomeMenus.VIEW_TOOLBAR, {
+                commandId: "outlineView:toggle",
+                label: '大纲视图'
+            });
+
+
 
             menus.registerSubmenu(WasomeMenus.PROJECT_NEW, '新建');
             // menus.registerMenuAction(WasomeMenus.PROJECT_NEW_POU, {

@@ -27,7 +27,7 @@ type EOL = '\r\n' | '\n' | '\r';
 yargs
     .command(
         'generate [packageName]',
-        'Generate WasomeCodeX re-exports',
+        'Generate PlcIDE re-exports',
         cli => cli
             .positional('packageName', {
                 type: 'string',

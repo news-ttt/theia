@@ -1,5 +1,5 @@
 /*
- * Replace visual file-watch error prompts with a log-only handler for WasomeCodeX.
+ * Replace visual file-watch error prompts with a log-only handler for PlcIDE.
  */
 import { injectable, inject } from '@theia/core/shared/inversify';
 import { ILogger } from '@theia/core/lib/common/logger';

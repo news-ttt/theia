@@ -27,12 +27,12 @@ export const TextReplacementContribution = Symbol('TextReplacementContribution')
  *                  switch (locale) {
  *                      case 'en': {
  *                          return {
- *                              'About': 'About WasomeCodeX',
+ *                              'About': 'About PlcIDE',
  *                          };
  *                      }
  *                      case 'de': {
  *                          return {
- *                              'About': 'Über WasomeCodeX',
+ *                              'About': 'Über PlcIDE',
  *                          };
  *                      }
  *                  }
