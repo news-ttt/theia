@@ -25,7 +25,7 @@ export const SampleToolbarDefaultsOverride: () => DeflatedToolbarTree = () => ({
                     id: 'webide.show',
                     command: 'webide.show',
                     icon: 'codicon codicon-home',
-                    tooltip: '显示项目工程树',
+                    tooltip: '显示项目工程树和项目空间',
                 },
             ],
             [
