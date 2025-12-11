@@ -13,6 +13,11 @@ const targets = [
         name: 'ast',
         appName: 'AstroPlant',
         gitUrl: 'git@gitee.com:news-ttt/plc-profile-help_1.git'
+    },
+    {
+        name: 'SEControl',
+        appName: 'Automation Control System IDE',
+        gitUrl: 'git@gitee.com:zy-wasom/plc-models.git'
     }
     // 可继续添加
 ];

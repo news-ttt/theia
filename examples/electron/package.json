@@ -18,7 +18,7 @@
         "reloadOnReconnect": true,
         "electron": {
           "splashScreenOptions": {
-            "content": "resources_custom/ide-logo.svg",
+            "content": "resources/ide-logo.svg",
             "height": 450
           }
         }
