@@ -29,6 +29,7 @@ import { bindWebviewViewStabilityPatch } from './webview/webview-view-stability-
 import { bindTreeViewPreparePatch } from './view/tree-view-prepare-patch';
 import { bindTreeWidgetViewPatch } from './view/tree-widget-view-patch';
 import { SidePanelHandlerFactory } from '@theia/core/lib/browser/shell';
+// import { AboutDialog } from './dialogs/about-dialog';
 // export const SidePanelHandlerFactory = Symbol('SidePanelHandlerFactory');
 export default new ContainerModule((
     bind: interfaces.Bind,

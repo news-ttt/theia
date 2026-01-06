@@ -32,6 +32,7 @@ import { ToolbarController } from '@theia/toolbar/lib/browser/toolbar-controller
 
 import { FormDialog, FormDialogField, NewPOU } from "../dialogs";
 import { ArraySetDialog } from "../dialogs/array-set-dialog";
+import { AboutDialog } from '../dialogs/about-dialog';
 
 const SampleSelectInputDialog: Command = {
     id: 'sample-command-select-input-dialog',
@@ -873,6 +874,18 @@ export class SampleCommandContribution implements CommandContribution {
                 this.commandRegistry.executeCommand('output:toggle');
             }
         });
+
+        commands.unregisterCommand(CommonCommands.ABOUT_COMMAND);
+
+        // 关于版本窗口
+        commands.registerCommand(CommonCommands.ABOUT_COMMAND, {
+            execute: () => {
+                const dialog = new AboutDialog();
+                const res = dialog.open(false);
+                console.info('About Dialog result:', res);
+                return res;
+            }
+        });
     }
 
     protected webideCreate(type: string): void {
@@ -903,6 +916,10 @@ export class SampleCommandContribution implements CommandContribution {
             }
         });
         dialog.open();
+    }
+
+    protected async openAbout(): Promise<void> {
+        // this.aboutDialog.open(false);
     }
 }
 
