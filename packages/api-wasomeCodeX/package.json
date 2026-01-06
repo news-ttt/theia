@@ -12,6 +12,7 @@
     "@theia/file-search": "1.64.0",
     "@theia/filesystem": "1.64.0",
     "@theia/monaco": "1.64.0",
+    "@lumino/widgets": "2.5.0",
     "@theia/monaco-editor-core": "1.96.302",
     "@theia/output": "1.64.0",
     "@theia/ovsx-client": "1.64.0",
@@ -60,7 +61,8 @@
     "lint": "theiaext lint",
     "build": "theiaext build",
     "watch": "theiaext watch",
-    "clean": "theiaext clean"
+    "clean": "theiaext clean",
+    "copy:css": "copy src/browser/style lib/browser/style"
   },
   "devDependencies": {
     "@theia/ext-scripts": "1.64.0"

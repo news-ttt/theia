@@ -1,0 +1,84 @@
+:root {
+    /* Same color for activity bar as sidebar */
+    --theia-activityBar-background: var(--theia-sideBar-background) !important;
+
+    --theia-tab-activeBackground: var(--theia-tab-hoverBackground) !important;
+    /* Button size and icon size */
+    --theia-private-sidebar-tab-width: 30px;
+    --theia-private-sidebar-tab-height: 30px;
+    --theia-private-sidebar-tabicon-width: 30px;
+
+    --theia-private-sidebar-icon-size: 16px;
+
+    /* Gap between tabs */
+    --theia-private-sidebar-tab-gap: 5px;
+    --theia-private-horizontal-tab-height: 36px;
+}
+
+/* Set height of header panel */
+.theia-header-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--theia-horizontal-toolbar-height);
+    background-color: var(--theia-activityBar-background);
+    padding-inline: var(--theia-private-sidebar-tab-gap);
+}
+
+.lm-TabBar.theia-app-sides {
+    /* Top tabs */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 100%;
+    background: unset;
+}
+
+/* Tabs container */
+.lm-TabBar.theia-app-sides .lm-TabBar-content {
+    display: flex;
+    gap: var(--theia-private-sidebar-tab-gap);
+    cursor: default;
+}
+
+/* Tab */
+.lm-TabBar.theia-app-sides .lm-TabBar-tab {
+    padding: 0;
+    min-width: 0;
+    min-height: 0 !important;
+    max-height: var(--theia-private-sidebar-tab-height);
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.18s ease;
+}
+
+/* Tab:hover */
+.lm-TabBar.theia-app-sides .lm-TabBar-tab:hover {
+    background-color: var(--theia-tab-hoverBackground);
+}
+
+/* Tab:active */
+.lm-TabBar.theia-app-sides .lm-TabBar-tab.lm-mod-current {
+    background-color: var(--theia-tab-activeBackground);
+}
+
+/* Button with icon and label */
+.lm-TabBar.theia-app-sides .lm-TabBar-tab .theia-tab-icon-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+}
+
+.lm-TabBar.theia-app-sides .lm-TabBar-tabIcon {
+    width: var(--theia-private-sidebar-icon-size);
+    height: var(--theia-private-sidebar-icon-size);
+}
+
+/* Label */
+.lm-TabBar.theia-app-sides .lm-TabBar-tabLabel {
+    display: inline-flex;
+    white-space: nowrap;
+    margin-left: 8px;
+}

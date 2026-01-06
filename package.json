@@ -105,7 +105,9 @@
     "performance:startup": "npm run -s performance:startup:browser && npm run -s performance:startup:electron",
     "performance:startup:browser": "concurrently --success first -k -r \"cd scripts/performance && node browser-performance.js --name 'Browser Frontend Startup' --folder browser --runs 10\" \"npm run -s --cwd examples/browser start\"",
     "performance:startup:electron": "npm run -s electron rebuild && cd scripts/performance && node electron-performance.js --name 'Electron Frontend Startup' --folder electron --runs 10",
-    "zip:native:dependencies": "node ./scripts/zip-native-dependencies.js"
+    "zip:native:dependencies": "node ./scripts/zip-native-dependencies.js",
+    "package:SEControl": "lerna run --scope=\"@theia/example-electron\" package:SEControl --concurrency 1",
+    "package:WasomeCodeX": "lerna run --scope=\"@theia/example-electron\" package:WasomeCodeX --concurrency 1"
   },
   "workspaces": [
     "dev-packages/*",

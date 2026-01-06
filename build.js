@@ -18,6 +18,11 @@ const targets = [
         name: 'SEControl',
         appName: 'Automation Control System IDE',
         gitUrl: 'git@gitee.com:zy-wasom/plc-models.git'
+    },
+    {
+        name: 'HollyEIC',
+        appName: 'HollyEIC IDE',
+        gitUrl: 'git@gitee.com:hollysys-wasom/hollysys-plc-models.git'
     }
     // 可继续添加
 ];
@@ -88,7 +93,7 @@ function updatePackageJson(pkgPath, isElectron = false) {
         pkg.productName = target.appName;
         pkg.author = { ...(pkg.author || {}), name: target.name };
         pkg.theia.frontend.config.applicationName = target.appName;
-        pkg.theia.frontend.config.electron.splashScreenOptions.content = `resources_custom/ide-logo.svg`;
+        pkg.theia.frontend.config.electron.splashScreenOptions.content = target.logo_name || `resources_custom/ide-logo.svg`;
         pkg.homepage = target.gitUrl;
     } else {
         pkg.scripts[`package:${target.name}`] =

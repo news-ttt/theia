@@ -16,6 +16,7 @@
 
 import { ContainerModule, interfaces } from '@theia/core/shared/inversify';
 import { bindSampleMenu } from './menu/sample-menu-contribution';
+import { SidePanelHandler } from './view/side-panel-handler';
 import { bindSampleToolbarContribution } from './toolbar/sample-toolbar-contribution';
 import { FileSystemWatcherErrorHandler } from '@theia/filesystem/lib/browser/filesystem-watcher-error-handler';
 import { LogOnlyFileSystemWatcherErrorHandler } from './file-watching/log-only-file-watcher-error-handler';
@@ -27,7 +28,8 @@ import { FrontendApplicationContribution } from '@theia/core/lib/browser/fronten
 import { bindWebviewViewStabilityPatch } from './webview/webview-view-stability-patch';
 import { bindTreeViewPreparePatch } from './view/tree-view-prepare-patch';
 import { bindTreeWidgetViewPatch } from './view/tree-widget-view-patch';
-
+import { SidePanelHandlerFactory } from '@theia/core/lib/browser/shell';
+// export const SidePanelHandlerFactory = Symbol('SidePanelHandlerFactory');
 export default new ContainerModule((
     bind: interfaces.Bind,
     unbind: interfaces.Unbind,
@@ -42,6 +44,9 @@ export default new ContainerModule((
     rebind(FileSystemWatcherErrorHandler).to(LogOnlyFileSystemWatcherErrorHandler).inSingletonScope();
     bind(FrontendApplicationContribution).toService(DefaultLocaleFrontendContribution);
     // WebviewView stability (Scheme A) runtime patch.
+    // Side panel handler
+    bind(SidePanelHandler).toSelf();
+    rebind(SidePanelHandlerFactory).toAutoFactory(SidePanelHandler);
     bindWebviewViewStabilityPatch(bind);
     bindTreeViewPreparePatch(bind);
     bindTreeWidgetViewPatch(bind);
