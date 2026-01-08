@@ -17,7 +17,7 @@
 import * as React from 'react';
 import { inject, injectable, postConstruct } from 'inversify';
 import { Dialog, DialogProps } from '@theia/core/lib/browser';
-import { ReactDialog } from '@theia/core/lib/browser/dialogs/react-dialog';
+import { DraggableReactDialog } from './draggable-react-dialog';
 import { ApplicationServer, ApplicationInfo, ExtensionInfo } from '@theia/core/lib/common/application-protocol';
 import { Message } from '@theia/core/lib/browser/widgets/widget';
 import { FrontendApplicationConfigProvider } from '@theia/core/lib/browser/frontend-application-config-provider';
@@ -34,7 +34,7 @@ export class AboutDialogProps extends DialogProps {
 }
 
 @injectable()
-export class AboutDialog extends ReactDialog<void> {
+export class AboutDialog extends DraggableReactDialog<void> {
     protected applicationInfo: ApplicationInfo | undefined;
     protected extensionsInfos: ExtensionInfo[] = [];
     protected readonly okButton: HTMLButtonElement;
