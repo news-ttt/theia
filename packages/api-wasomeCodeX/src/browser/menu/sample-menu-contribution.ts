@@ -33,6 +33,7 @@ import { ToolbarController } from '@theia/toolbar/lib/browser/toolbar-controller
 import { FormDialog, FormDialogField, NewPOU } from "../dialogs";
 import { ArraySetDialog } from "../dialogs/array-set-dialog";
 import { AboutDialog } from '../dialogs/about-dialog';
+import { ForceValSetDialog, WriteValueSetDialog } from "../dialogs/set-force-value";
 
 const SampleSelectInputDialog: Command = {
     id: 'sample-command-select-input-dialog',
@@ -309,10 +310,19 @@ export namespace WasomeCommands {
         label: "关闭/打开底部视图"
     });
 
-
     export const DIALOG_ARRAYSET = Command.toDefaultLocalizedCommand({
         id: "webide.dialog.arrayset",
         label: "数组设置弹窗"
+    });
+
+    export const FORCEVAL_SET = Command.toDefaultLocalizedCommand({
+        id: "webide.dialog.forcevalset",
+        label: "强制值设置弹窗"
+    });
+
+    export const WRITEVAL_SET = Command.toDefaultLocalizedCommand({
+        id: "webide.dialog.writevalset",
+        label: "写入值设置弹窗"
     });
 
     export const DIALOG_CONFIRM = Command.toDefaultLocalizedCommand({
@@ -843,14 +853,26 @@ export class SampleCommandContribution implements CommandContribution {
             execute: () => this.commandRegistry.executeCommand("webide.showWadsLib")
         });
 
+        commands.registerCommand(WasomeCommands.FORCEVAL_SET, {
+            execute: async (args) => {
+                const dialog = new ForceValSetDialog(args);
+                return await dialog.open();
+            }
+        });
+        commands.registerCommand(WasomeCommands.WRITEVAL_SET, {
+            execute: async (args) => {
+                const dialog = new WriteValueSetDialog(args);
+                return await dialog.open();
+            }
+        });
+
         commands.registerCommand(WasomeCommands.DIALOG_ARRAYSET, {
             execute: async (args) => {
                 const dialog = new ArraySetDialog({ initialValue: args?.initValue || [] });
-                const res = await dialog.open();
-                console.info('Array Set Dialog result:', res);
-                return res;
+                return await dialog.open();
             }
         });
+
         commands.registerCommand(WasomeCommands.DIALOG_CONFIRM, {
             execute: async (options) => {
                 const choice = await new ConfirmDialog({

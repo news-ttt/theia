@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactDialog } from '@theia/core/lib/browser/dialogs/react-dialog';
+import { DraggableReactDialog } from './draggable-react-dialog';
 
 interface options<T = any> {
     initialValue?: T;
@@ -9,7 +9,7 @@ interface ArrayRange {
     end: number | '';
 }
 
-export class ArraySetDialog extends ReactDialog<any> {
+export class ArraySetDialog extends DraggableReactDialog<any> {
     protected isArray: boolean;
     protected ranges: ArrayRange[];
     protected error: string = '';
