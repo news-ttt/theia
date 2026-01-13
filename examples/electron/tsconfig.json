@@ -213,6 +213,9 @@
       "path": "../../packages/workspace"
     },
     {
+      "path": "../../packages/api-wasomeCodeX"
+    },
+    {
       "path": "../api-provider-sample"
     },
     {
