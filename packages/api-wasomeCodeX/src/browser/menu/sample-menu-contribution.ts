@@ -686,9 +686,17 @@ export class SampleCommandContribution implements CommandContribution {
             execute: async (...args: any[]) => {
                 // 获取之前创建的通道
                 this.commandRegistry.executeCommand('output:toggle');
-                const outputChannel = this.outputChannelManager.getChannel('Wasome WebIDE');
+                let channels = this.outputChannelManager.getChannels();
+                const channelNames = channels.map((channel) => {
+                    console.log(channel.name);
+                    return channel.name;
+                });
+                const nameFind = channelNames.find((name) => name === 'Wasome WebIDE');
+                // const outputChannel = this.outputChannelManager.channels.get('Wasome WebIDE');
                 // 显示输出面板并聚焦到该通道
-                if (outputChannel) {
+                if (nameFind) {
+                    const outputChannel = this.outputChannelManager.getChannel('Wasome WebIDE');
+
                     outputChannel.show();
                 }
             }
