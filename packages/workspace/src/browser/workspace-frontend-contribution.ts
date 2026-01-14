@@ -526,7 +526,7 @@ export class WorkspaceFrontendContribution implements CommandContribution, Keybi
 export namespace WorkspaceFrontendContribution {
 
     /**
-     * File filter for all PlcIDE and VS Code workspace file types.
+     * File filter for all WasomeCodeX and VS Code workspace file types.
      *
      * @deprecated Since 1.39.0 Use `WorkspaceFrontendContribution#getWorkspaceDialogFileFilters` instead.
      */

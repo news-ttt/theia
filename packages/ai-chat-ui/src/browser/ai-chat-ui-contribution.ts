@@ -79,7 +79,7 @@ export class AIChatContribution extends AbstractViewContribution<ChatViewWidget>
                 rank: 100
             },
             toggleCommandId: AI_CHAT_TOGGLE_COMMAND_ID,
-            toggleKeybinding: isOSX ? 'ctrl+cmd+l' : 'ctrl+alt+l'
+            toggleKeybinding: isOSX ? 'ctrl+cmd+i' : 'ctrl+alt+i'
         });
     }
 
