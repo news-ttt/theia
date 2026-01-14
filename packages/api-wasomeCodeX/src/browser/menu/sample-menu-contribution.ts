@@ -688,8 +688,9 @@ export class SampleCommandContribution implements CommandContribution {
                 this.commandRegistry.executeCommand('output:toggle');
                 const outputChannel = this.outputChannelManager.getChannel('Wasome WebIDE');
                 // 显示输出面板并聚焦到该通道
-                outputChannel.show();
-
+                if (outputChannel) {
+                    outputChannel.show();
+                }
             }
         });
 
