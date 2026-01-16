@@ -346,10 +346,10 @@ export class PluginViewRegistry implements FrontendApplicationContribution {
             }, {
                 execute: () => this.toggleViewContainer(id)
             }));
-            toDispose.push(this.menus.registerMenuAction(CommonMenus.VIEW_VIEWS, {
-                commandId: toggleCommandId,
-                label: options.label
-            }));
+            // toDispose.push(this.menus.registerMenuAction(CommonMenus.VIEW_VIEWS, {
+            //     commandId: toggleCommandId,
+            //     label: options.label
+            // }));
             toDispose.push(this.quickView?.registerItem({
                 label: options.label,
                 open: async () => {
@@ -668,7 +668,7 @@ export class PluginViewRegistry implements FrontendApplicationContribution {
         const containerWidget = await this.getOrCreateViewContainerWidget(containerId);
         if (!containerWidget.isAttached) {
             await this.shell.addWidget(containerWidget, {
-                area: ApplicationShell.isSideArea(location) ? location : 'left',
+                area: containerId == 'workbench.view.extension.webide-right' ? 'right' : ApplicationShell.isSideArea(location) ? location : 'left',
                 rank: Number.MAX_SAFE_INTEGER
             });
         }
