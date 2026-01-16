@@ -20,7 +20,7 @@ import { TheiaAppLoader } from '../theia-app-loader';
 import { TheiaExplorerView } from '../theia-explorer-view';
 
 /**
- * Test the  PlcIDE welcome page from the getting-started package.
+ * Test the Theia welcome page from the getting-started package.
  */
 test.describe('Theia Welcome Page', () => {
     let app: TheiaApp;

@@ -18,7 +18,7 @@ import { FrontendApplicationContribution } from '@theia/core/lib/browser';
 
 export const AIActivationService = Symbol('AIActivationService');
 /**
- * AIActivationService is used to manage the activation state of AI features in PlcIDE.
+ * AIActivationService is used to manage the activation state of AI features in Theia.
  */
 export interface AIActivationService {
     isActive: boolean;

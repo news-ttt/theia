@@ -137,7 +137,7 @@ export class PluginViewRegistry implements FrontendApplicationContribution {
         [TEST_VIEW_CONTAINER_ID, 'workbench.view.testing'],
         [OutputWidget.ID, 'workbench.panel.output'],
         [DebugConsoleContribution.options.id, 'workbench.panel.repl'],
-        // PlcIDE does not have a single terminal widget, but instead each terminal gets its own widget. Therefore "the terminal widget is active" doesn't make sense in PlcIDE
+        // Theia does not have a single terminal widget, but instead each terminal gets its own widget. Therefore "the terminal widget is active" doesn't make sense in Theia
         // [TERMINAL_WIDGET_FACTORY_ID, 'workbench.panel.terminal'],
         // [?? , 'workbench.panel.comments'] not sure what this mean: we don't show comments in sidebars nor the bottom
     ]);
@@ -145,7 +145,7 @@ export class PluginViewRegistry implements FrontendApplicationContribution {
     @postConstruct()
     protected init(): void {
 
-        // TODO workbench.panel.comments - PlcIDE does not have a proper comments view yet
+        // TODO workbench.panel.comments - Theia does not have a proper comments view yet
 
         this.updateFocusedView();
         this.shell.onDidChangeActiveWidget(() => this.updateFocusedView());
@@ -346,7 +346,6 @@ export class PluginViewRegistry implements FrontendApplicationContribution {
             }, {
                 execute: () => this.toggleViewContainer(id)
             }));
-            console.log('register view container menu action', toggleCommandId, options.label);
             // toDispose.push(this.menus.registerMenuAction(CommonMenus.VIEW_VIEWS, {
             //     commandId: toggleCommandId,
             //     label: options.label
@@ -666,7 +665,6 @@ export class PluginViewRegistry implements FrontendApplicationContribution {
             return undefined;
         }
         const { location } = data;
-        console.log('openViewContainer', containerId, location);
         const containerWidget = await this.getOrCreateViewContainerWidget(containerId);
         if (!containerWidget.isAttached) {
             await this.shell.addWidget(containerWidget, {
@@ -695,7 +693,6 @@ export class PluginViewRegistry implements FrontendApplicationContribution {
             }
             const widget = await this.widgetManager.getOrCreateWidget<PluginViewWidget>(PLUGIN_VIEW_FACTORY_ID, identifier);
             if (containerWidget.getTrackableWidgets().indexOf(widget) === -1) {
-                console.log('openViewContainer prepareViewContainer', viewId, containerWidget);
                 containerWidget.addWidget(widget, {
                     initiallyCollapsed: !!containerWidget.getParts().length,
                     initiallyHidden: !this.isViewVisible(viewId)

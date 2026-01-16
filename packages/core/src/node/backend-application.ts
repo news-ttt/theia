@@ -149,7 +149,7 @@ export class BackendApplicationCliContribution implements CliContribution {
 }
 
 /**
- * The main entry point for PlcIDE applications.
+ * The main entry point for Theia applications.
  */
 @injectable()
 export class BackendApplication {
