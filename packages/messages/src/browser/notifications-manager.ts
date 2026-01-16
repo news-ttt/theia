@@ -225,12 +225,11 @@ export class NotificationManager extends MessageClient {
         }
     }
     protected getTimeout(plainMessage: PlainMessage): number {
-        return 5 * 1000;
-        // if (plainMessage.actions && plainMessage.actions.length > 0) {
-        //     // Ignore the timeout if at least one action is set, and we wait for user interaction.
-        //     return 0;
-        // }
-        // return plainMessage.options && plainMessage.options.timeout || this.preferences['notification.timeout'];
+        if (plainMessage.actions && plainMessage.actions.length > 0) {
+            // Ignore the timeout if at least one action is set, and we wait for user interaction.
+            return 0;
+        }
+        return plainMessage.options && plainMessage.options.timeout || this.preferences['notification.timeout'];
     }
     protected isExpandable(message: string, source: string | undefined, actions: string[]): boolean {
         if (!actions.length && source) {
