@@ -97,8 +97,8 @@ export class WindowBlinkService {
     private async blinkDocumentTitle(agentName?: string): Promise<void> {
         const originalTitle = document.title;
         const alertTitle = agentName
-            ? `🔔 WasomeCodeX - Agent "${agentName}" Completed`
-            : '🔔 WasomeCodeX - Agent Completed';
+            ? `🔔 Theia - Agent "${agentName}" Completed`
+            : '🔔 Theia - Agent Completed';
 
         let blinkCount = 0;
         const maxBlinks = 6;

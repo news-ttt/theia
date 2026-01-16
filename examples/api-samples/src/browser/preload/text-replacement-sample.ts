@@ -22,7 +22,7 @@ export class TextSampleReplacementContribution implements TextReplacementContrib
         switch (locale) {
             case 'en': {
                 return {
-                    'About': '关于',
+                    'About': 'About',
                 };
             }
             case 'de': {

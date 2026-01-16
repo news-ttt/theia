@@ -34,7 +34,7 @@ const config: PlaywrightTestConfig = {
         ['list'],
         ['allure-playwright']
     ],
-    // Reuse  WasomeCodeX backend on port 3000 or start instance before executing the tests
+    // Reuse Theia backend on port 3000 or start instance before executing the tests
     webServer: {
         command: 'npm run theia:start',
         port: 3000,

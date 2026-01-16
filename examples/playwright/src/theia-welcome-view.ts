@@ -20,7 +20,7 @@ import { normalizeId } from './util';
 const TheiaWelcomeViewData = {
     tabSelector: normalizeId('#shell-tab-getting.started.widget'),
     viewSelector: normalizeId('#getting.started.widget'),
-    viewName: '欢迎'
+    viewName: 'Welcome'
 };
 
 export class TheiaWelcomeView extends TheiaView {

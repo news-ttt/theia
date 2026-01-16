@@ -37,7 +37,7 @@ const DEFAULT_HOSTED_PLUGIN_PORT = 3030;
 export const HostedInstanceManager = Symbol('HostedInstanceManager');
 
 /**
- * Is responsible for running and handling separate WasomeCodeX instance with given plugin.
+ * Is responsible for running and handling separate Theia instance with given plugin.
  */
 export interface HostedInstanceManager {
     /**
@@ -46,19 +46,19 @@ export interface HostedInstanceManager {
     isRunning(): boolean;
 
     /**
-     * Runs specified by the given uri plugin in separate WasomeCodeX instance.
+     * Runs specified by the given uri plugin in separate Theia instance.
      *
      * @param pluginUri uri to the plugin source location
-     * @param port port on which new instance of WasomeCodeX should be run. Optional.
-     * @returns uri where new WasomeCodeX instance is run
+     * @param port port on which new instance of Theia should be run. Optional.
+     * @returns uri where new Theia instance is run
      */
     run(pluginUri: URI, port?: number): Promise<URI>;
 
     /**
-     * Runs specified by the given uri plugin  with debug in separate WasomeCodeX instance.
+     * Runs specified by the given uri plugin  with debug in separate Theia instance.
      * @param pluginUri uri to the plugin source location
      * @param debugConfig debug configuration
-     * @returns uri where new WasomeCodeX instance is run
+     * @returns uri where new Theia instance is run
      */
     debug(pluginUri: URI, debugConfig: PluginDebugConfiguration): Promise<URI>;
 

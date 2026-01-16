@@ -158,7 +158,7 @@ interface FormatActionsMultipleProperties {
 }
 // #endregion
 
-// #region Custom  WasomeCodeX extensions to editor preferences
+// #region Custom Theia extensions to editor preferences
 
 const theiaEditorSchema: PreferenceSchema['properties'] = {
     'editor.formatOnSaveTimeout': {
